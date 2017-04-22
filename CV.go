@@ -8,6 +8,8 @@ import (
 	"net/http"
 	"os"
 
+	mgo "gopkg.in/mgo.v2"
+
 	uuid "github.com/nu7hatch/gouuid"
 )
 
@@ -116,12 +118,18 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 func newSub(w http.ResponseWriter, r *http.Request) {
-	err := tpl.ExecuteTemplate(w, "new.html", nil)
+	var data cvData
 
 	if r.Method == http.MethodPost {
-		//TODO: Handle Post request
+		data.ImageName = uploadPage(w, r)
+
+		err := dataInDb(data)
+		if err != nil {
+			log.Println(err)
+		}
 	}
 
+	err := tpl.ExecuteTemplate(w, "new.html", nil)
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
@@ -131,28 +139,26 @@ func newSub(w http.ResponseWriter, r *http.Request) {
 	log.Println(r.URL.Path)
 }
 
-func uploadPage(w http.ResponseWriter, r *http.Request) {
+func uploadPage(w http.ResponseWriter, r *http.Request) string {
 
 	if r.Method == http.MethodPost {
 		// To recieve a file, for html its going to be input type="file" name="file"
-		src, hdr, err := r.FormFile("imageFile")
+		src, hdr, err := r.FormFile("pic")
 		if err != nil {
 			log.Println(err)
 			http.Error(w, err.Error(), 500)
-			return
 		}
 		defer src.Close()
 
 		nameUpdate, _ := uuid.NewV4()
 		hdr.Filename = nameUpdate.String()
-		filePath := "./assets/images/" + hdr.Filename + ".png"
+		filePath := "./images/" + hdr.Filename + ".png"
 
 		//writing file by creating one
 		dst, err := os.Create(filePath)
 		if err != nil {
 			log.Println(err)
 			http.Error(w, err.Error(), 500)
-			return
 		}
 		defer dst.Close()
 
@@ -161,24 +167,29 @@ func uploadPage(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Println(err)
 			http.Error(w, err.Error(), 500)
-			return
 		}
-
-		err = uploadedFileDb(filePath)
 
 		if err != nil {
-			fmt.Fprintf(w, `{"response":"Failed :("}`)
 			os.Remove(filePath)
 		}
-		fmt.Fprintf(w, `{"response":"Success"}`)
+		return filePath
 	}
 
 	log.Println(r.URL.Path)
+	return ""
 }
 
-func uploadedFileDb(path string) error {
+func dataInDb(data cvData) error {
+	session, err := mgo.Dial("mongodb://localhost/")
 
-	//TODO: Handle uploaded file in DB
+	if err != nil {
+		log.Println(err)
+	}
+	defer session.Close()
+	session.SetMode(mgo.Monotonic, true)
 
-	return nil
+	c := session.DB("CVDB").C("CVCol")
+	err = c.Insert(data)
+
+	return err
 }
