@@ -94,9 +94,9 @@ func init() {
 }
 
 func main() {
-	http.Handle("./",
-		http.StripPrefix("/",
-			http.FileServer(http.Dir("./"))))
+	http.Handle("/assets/",
+		http.StripPrefix("/assets",
+			http.FileServer(http.Dir("./assets"))))
 
 	http.HandleFunc("/", index)
 	http.HandleFunc("/new.html", newSub)
