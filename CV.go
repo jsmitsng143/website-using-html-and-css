@@ -10,6 +10,7 @@ import (
 
 	mgo "gopkg.in/mgo.v2"
 
+	"github.com/gorilla/context"
 	uuid "github.com/nu7hatch/gouuid"
 )
 
@@ -108,7 +109,7 @@ func main() {
 	http.HandleFunc("/help.html", help)
 
 	fmt.Println("Listening at 8888")
-	http.ListenAndServe(":8888", nil)
+	http.ListenAndServe(":8888", context.ClearHandler(http.DefaultServeMux))
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
