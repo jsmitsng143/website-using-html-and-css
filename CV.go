@@ -10,6 +10,7 @@ import (
 
 	mgo "gopkg.in/mgo.v2"
 
+	"github.com/gorilla/context"
 	uuid "github.com/nu7hatch/gouuid"
 )
 
@@ -101,10 +102,14 @@ func main() {
 			http.FileServer(http.Dir("./assets"))))
 
 	http.HandleFunc("/", index)
+	http.HandleFunc("/index.html", index)
 	http.HandleFunc("/new.html", newSub)
+	http.HandleFunc("/contact.html", contact)
+	http.HandleFunc("/policy.html", policy)
+	http.HandleFunc("/help.html", help)
 
 	fmt.Println("Listening at 8888")
-	http.ListenAndServe(":8888", nil)
+	http.ListenAndServe(":8888", context.ClearHandler(http.DefaultServeMux))
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
@@ -184,6 +189,8 @@ func newSub(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Println(err)
 		}
+
+		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 	}
 
 	err := tpl.ExecuteTemplate(w, "new.html", nil)
@@ -249,4 +256,37 @@ func dataInDb(data cvData) error {
 	err = c.Insert(data)
 
 	return err
+}
+func help(w http.ResponseWriter, r *http.Request) {
+	err := tpl.ExecuteTemplate(w, "help.html", nil)
+
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	log.Println(r.URL.Path)
+}
+func policy(w http.ResponseWriter, r *http.Request) {
+	err := tpl.ExecuteTemplate(w, "policy.html", nil)
+
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	log.Println(r.URL.Path)
+}
+func contact(w http.ResponseWriter, r *http.Request) {
+	err := tpl.ExecuteTemplate(w, "contact.html", nil)
+
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	log.Println(r.URL.Path)
 }
