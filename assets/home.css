@@ -4,6 +4,11 @@
      background-color:rgb(48,199,210);
 }
 
+a{
+    color:black;
+      text-decoration:  none;
+}
+
 .icontainer{
     background-color: white;
 }

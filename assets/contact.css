@@ -1,0 +1,44 @@
+.container {
+    width: 100%;
+    height:auto;
+     background-color:whitesmoke;
+}
+a{
+
+    color:black;
+      
+    text-decoration:  none;
+
+}
+header{
+    padding: 1em;
+    color: white;
+    background-color: teal;
+    text-align: left;
+}
+footer {
+    padding: 1em;
+    color: white;
+    background-color: teal;
+    text-align: left;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
+}
+div.menu-wrapper { 
+    float: right; 
+    }
+ul.menu li {
+    color: black;
+     display:inline-block;
+     *display:inline;
+     }
+ul.menu li a {
+     display:block;
+      padding: 6px 12px; 
+      }
+      body{
+    margin:0;
+}
