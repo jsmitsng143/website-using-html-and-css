@@ -24,31 +24,31 @@
       <div class="body">
               <br>
               <strong>Passport size image: </strong>
-              <input type="file" name="pic" >
+              <input type="file" name="pic" accept="image/*">
               <br>
               <br>
               <strong>Name: </strong>
-              <input type="text" placeholder="Enter Full name..." required> 
+              <input type="text" name="flname" placeholder="Enter Full name..." required> 
               <br>
               <br>
               <strong>E-mail: </strong>
-              <input type="text" placeholder="Enter E-mail here" required> 
+              <input type="text" name="uemail" placeholder="Enter E-mail here" required> 
               <br>
               <br>
               <strong>Phone no.: </strong>
-              <input type="numeric" placeholder="Enter phone no. here" required> 
+              <input type="numeric" name="ucontact" placeholder="Enter phone no. here" required> 
               <br>
               <br>
               <strong>Website(if any): </strong>
-              <input type="text" placeholder="Enter url here"> 
+              <input type="text" name="web"  placeholder="Enter url here"> 
               <br>
               <br>
               <strong>Date Of Birth: </strong>
-              <input type="text" placeholder="DD/MM/YYYY" required> 
+              <input type="text" name="dob" placeholder="DD/MM/YYYY" required> 
               <br>
               <br>
               <strong>Address: </strong>
-              <input type="text" placeholder="Enter Full Address..." size="30" required>
+              <input type="text" name="addr" placeholder="Enter Full Address..." size="30" required>
               <br>
               <br>
               <strong>Gender: </strong>
@@ -57,7 +57,7 @@
               <br>
               <br>
               <strong>Country:</strong>
-              <select required>
+              <select required name="con">
     <option value="Select your Country" selected>Select your Country</option>
     <option value="Afghanistan">Afghanistan</option>
     <option value="Albania">Albania</option>
@@ -303,9 +303,14 @@
 <br>
 <strong>Education:</strong>
 <ul>
-    <li> X Percentage:   <input type="text" placeholder="Score in X" required> <input type="text" placeholder="Institution Name" required> <input type="text" placeholder="Year of Passing" required> </li>
+    <li> X Percentage:  <input type="text" name="xper" placeholder="Score in X" required> 
+                        <input type="text" name="xname" placeholder="Institution Name" required> 
+                        <input type="text" name="xyear" placeholder="Year of Passing" required> </li>
     <br>
-    <li> XII Percentage: <input type="text" placeholder="Score in X" required> <input type="text" placeholder="Institution Name" required> <input type="text" placeholder="Year of Passing" required></li>
+    <li> XII Percentage: 
+                        <input type="text" name="xiiper" placeholder="Score in X" required> 
+                        <input type="text" name="xiiname" placeholder="Institution Name" required> 
+                        <input type="text" name="xiiyear" placeholder="Year of Passing" required></li>
     <br>
     <li> Graduation:     <input type="text" placeholder="Graduation Percentage" required> <input type="text" placeholder="Institution Name" required> <input type="text" placeholder="Year of Passing" required></li>
     <br>
@@ -314,46 +319,62 @@
 <br>
 <br>
 <strong>Objective:</strong>
-<textarea name="textarea"></textarea>
+<textarea name="uobj" name="textarea"></textarea>
 <br>
 <br>
 <strong>Work Exprience</strong>
 <ul>
-    <li> Job Title:   <input type="text" > <input type="text" placeholder="Company Name" > <input type="text" placeholder="Start_date-End_date" > </li>
+    <li> Job Title:   <input type="text" name="jobtitle1" > 
+    <input type="text" placeholder="Company Name" name="comname1"> 
+    <input type="text" placeholder="Start_date-End_date" name="jobdate1"> </li>
     <br>
-    <li> Job Title: <input type="text"  > <input type="text" placeholder="Company Name" > <input type="text" placeholder="Start_date-End_date" ></li>
+    <li> Job Title: <input type="text"  name="jobtitle2"> 
+    <input type="text" placeholder="Company Name" name="comname2"> 
+    <input type="text" placeholder="Start_date-End_date" name="jobdate2"></li>
     <br>
-    <li> Job Title:  <input type="text" > <input type="text" placeholder="Company Name"> <input type="text" placeholder="Start_date-End_date"></li>
+    <li> Job Title:  <input type="text" name="jobtitle3"> 
+    <input type="text" placeholder="Company Name" name="comname3"> 
+    <input type="text" placeholder="Start_date-End_date" name="jobdate3"></li>
     <br>
-    <li> Job Title: <input type="text" > <input type="text" placeholder="Company Name" > <input type="text" placeholder="Start_date-End_date" ></li>
+    <li> Job Title: <input type="text" name="jobtitle4"> 
+    <input type="text" placeholder="Company Name" name="comname4"> 
+    <input type="text" placeholder="Start_date-End_date" name="jobdate4"></li>
     <br>
-    <li> Job Title: <input type="text" > <input type="text" placeholder="Company Name" > <input type="text" placeholder="Start_date-End_date" ></li>
+    <li> Job Title: <input type="text" name="jobtitle5"> 
+    <input type="text" placeholder="Company Name" name="comname5"> 
+    <input type="text" placeholder="Start_date-End_date" name="jobdate5"></li>
     <br>
-    <li> Job Title: <input type="text" > <input type="text" placeholder="Company Name" > <input type="text" placeholder="Start_date-End_date" ></li>
+    <li> Job Title: <input type="text" name="jobtitle6"> 
+    <input type="text" placeholder="Company Name" name="comname6"> 
+    <input type="text" placeholder="Start_date-End_date" name="jobdate6"></li>
     <br>
-    <li> Job Title: <input type="text" > <input type="text" placeholder="Company Name" > <input type="text" placeholder="Start_date-End_date" ></li>
+    <li> Job Title: <input type="text" name="jobtitle7"> 
+    <input type="text" placeholder="Company Name" name="comname7" > 
+    <input type="text" placeholder="Start_date-End_date" name="jobdate7"></li>
     <br>
-    <li> Job Title: <input type="text" > <input type="text" placeholder="Company Name" > <input type="text" placeholder="Start_date-End_date" ></li>
+    <li> Job Title: <input type="text" name="jobtitle8"> 
+    <input type="text" placeholder="Company Name" name="comname8"> 
+    <input type="text" placeholder="Start_date-End_date" name="jobdate8"></li>
 </ul>
 <strong>Skills</strong>
 <ul>
-    <li><input type="text" placeholder="Ex:Microsoft Word" ></li>
+    <li><input type="text" placeholder="Ex:Microsoft Word" name="skill1"></li>
     <br>
-    <li><input type="text" placeholder="Ex:Microsoft Word" ></li>
+    <li><input type="text" placeholder="Ex:Microsoft Word" name="skill2"></li>
     <br>
-    <li><input type="text" placeholder="Ex:Microsoft Word" ></li>
+    <li><input type="text" placeholder="Ex:Microsoft Word" name="skill3"></li>
     <br>
-    <li><input type="text" placeholder="Ex:Microsoft Word" ></li>
+    <li><input type="text" placeholder="Ex:Microsoft Word" name="skill4"></li>
     <br>
-    <li><input type="text" placeholder="Ex:Microsoft Word" ></li>
+    <li><input type="text" placeholder="Ex:Microsoft Word" name="skill5"></li>
     <br>
-    <li><input type="text" placeholder="Ex:Microsoft Word" ></li>
+    <li><input type="text" placeholder="Ex:Microsoft Word" name="skill6"></li>
     <br>
-    <li><input type="text" placeholder="Ex:Microsoft Word" ></li>
+    <li><input type="text" placeholder="Ex:Microsoft Word" name="skill7"></li>
     <br>
-    <li><input type="text" placeholder="Ex:Microsoft Word" ></li>
+    <li><input type="text" placeholder="Ex:Microsoft Word" name="skill8"></li>
     <br>
-    <li><input type="text" placeholder="Ex:Microsoft Word" ></li>
+    <li><input type="text" placeholder="Ex:Microsoft Word" name="skill9"></li>
 </ul>
 <button class="button" style="vertical-align:middle" type="submit"><span>Submit </span></button>
           </div>
