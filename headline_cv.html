@@ -4,11 +4,16 @@
         <link href="assets/headline_cv.css" rel="stylesheet" type="text/css">
       </head>
     <body>
+        {{$data := .}}
         <hr size="2px" noshade color="black" >
         <br>
         <br>
         <br>
-        <div style="text-align:left; font-family: arial; font-size: 40px;">Thomas <br> <divstyle="text-align:left; font-family: arial; font-size: 40px;">Edison</div><div> <img src="assets/images/p.jpg" id="pic"> </div></div>
+        <div style="text-align:left; font-family: arial; font-size: 40px;">{{$data.Name}} <br> 
+        <form>
+                <input type=button name=print value="Print" onClick="window.print()">
+            </form>
+        <div style="text-align:left; font-family: arial; font-size: 40px;"></div><div> <img src={{$data.ImageName}} id="pic"> </div></div>
         <br>
         <br>
         <br>
@@ -16,62 +21,74 @@
         <br>
         <div class="m"> <strong> contact: </strong> </div>
             <div>
-            <b>Address:</b>956, 31st Street NYC - 10001 United States
-           &nbsp <b>E-mail:</b> thomas.@thecompany.com 
-            <br> <b>Website:</b> biuldyourcv.com 
-            &nbsp <b>Phone no.:</b>  (123) 456 789, (456) 789 123 
+            <b>Address:</b>{{$data.Addr}}
+           &nbsp <b>E-mail:</b> {{$data.Email}}
+            <br> <b>Website:</b> {{$data.Web}}
+            &nbsp <b>Phone no.:</b>  {{$data.Phone}}
         </div>
         <hr>
         <br>
         <br>
         <div class="m"> <strong> Basic Info: </strong> </div>
-            <b>Gender:</b>Male
-            &nbsp<b>Date of Birth</b>01/02/1989
+            <b>Gender:</b>{{$data.Gender}}
+            &nbsp<b>Date of Birth</b>{{$data.Phone}}
         </div>
         <hr>
         <br>
         <br>
             <div class="m"> <strong> Objective: </strong> </div>
-            <div >Seeking a position as an accountant where extensive experience will be further developed and utilised. Extensive experience to the credit.</div>
+            <div >{{$data.Objective}}</div>
             <hr>
             <br>
             <br>
             <div class="m"> <strong> Work Experience: </strong> </div>
             <div >
-                Administrator At MyOffice Inc, Boston Oct 2005 - Present
+                {{$data.JobTitle1}} At {{$data.ComName1}}, {{$data.JobDates1}}
                 <br>
-                DC Systems, DC Mar 2003 - Jun 2005
+                {{$data.JobTitle2}} At {{$data.ComName2}}, {{$data.JobDates2}}
                 <br>
-                Nucleus Band Corp, Boston Jan 2002 - Jan 2003
+                {{$data.JobTitle3}} At {{$data.ComName3}}, {{$data.JobDates3}}
+                <br>
+                {{$data.JobTitle4}} At {{$data.ComName4}}, {{$data.JobDates4}}
+                <br>
+                {{$data.JobTitle5}} At {{$data.ComName5}}, {{$data.JobDates5}}
+                <br>
+                {{$data.JobTitle6}} At {{$data.ComName6}}, {{$data.JobDates6}}
+                <br>
+                {{$data.JobTitle7}} At {{$data.ComName7}}, {{$data.JobDates7}}
+                <br>
+                {{$data.JobTitle8}} At {{$data.ComName8}}, {{$data.JobDates8}}     
             </div>
             <hr>
             <br>
             <br>
              <div class="m"> <strong> Education: </strong> </div>
         <div>
-            <b>X Percentage:</b>Scored 90% From DL DAV in 1996
+            <b>X Percentage:</b>Scored {{$data.XPer}} From {{$data.Xname}} in {{$data.Xyear}}
             <br>
-            <b>XII Percentage:</b>Scored 89% From DL DAV in 1998
+            <b>XII Percentage:</b>Scored {{$data.XIIper}} From {{$data.XIIname}} in {{$data.XIIyear}}
             <br>
-            <b>Graduation:</b>Scored 90% From University of Washington in 2001
+            <b>Graduation:</b>Scored {{$data.Gradper}} From {{$data.Gradname}} in {{$data.Gradyear}}
             <br>
-            <b>Post Graduation:</b>scored 90% From University of Washington DAV in 2003 
+            <b>Post Graduation:</b>scored {{$data.PGper}} From {{$data.PGname}} in {{$data.PGyear}} 
         </div>
         <hr>
         <br>
         <br>
          <div class="m"> <strong> Skills: </strong> </div>
         <div>
-            Microsoft Word
+            {{$data.Skill1}}
             &nbsp
-            Excel
+            {{$data.Skill2}}
             &nbsp
-            Access
+            {{$data.Skill3}}
             &nbsp 
-            PowerPoint
+            {{$data.Skill4}}
             &nbsp
-            Outlook Express 
+            {{$data.Skill5}}
             &nbsp
-            Microsoft Windows
+            {{$data.Skill7}}
+            &nbsp
+            {{$data.Skill8}}            
     </body>
 </html>

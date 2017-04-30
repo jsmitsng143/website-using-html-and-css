@@ -1,9 +1,18 @@
 <html>
     <head>
         <title>mocca_cv:Tamplate</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            function getName(){
+                var data = window.prompt("Enter Name: ")                
+                $.get("CV.go", {value: data}, function(result){                    
+                });
+            }   
+        </script>
     </head>
     <body>
-        <img src="assets/images/p.jpg" style="position: absolute;top: 15px;left: 20;width: 150px;height: 200px;">
+        {{$data := .}}
+        <img src={{$data.ImageName}} style="position: absolute;top: 15px;left: 20;width: 150px;height: 200px;">
         <br>
         <br>
         <br>
@@ -12,45 +21,57 @@
         <br>
         <br>
         <br>
-        <div style="font-size:3em; text-align:right;  "><span style="color:red;"> Thomas </span> Edison</div>
+        <div style="font-size:3em; text-align:right;  "> {{$data.Name}} 
+            <form>
+                <input type=button name=print value="Print" onClick="window.print()">
+            </form>
+        </div>
         <hr size="2px" noshade color="black" >
         <div style="color:red;"> <strong><u><h2>contact:</u></h2> </strong> </div>
         <ol type="circle">
-            <li><b style="color:red;">Address:</b>956, 31st Street NYC - 10001 United States</li>
-            <li><b style="color:red;">E-mail:</b> thomas.@thecompany.com </li>
-            <li><b style="color:red;">Website:</b> biuldyourcv.com </li>
-            <li><b style="color:red;">Phone no.:</b>  (123) 456 789 (456) 789 123 </li>
+            <li><b style="color:red;">Address:</b>{{$data.Addr}}</li>
+            <li><b style="color:red;">E-mail:</b> {{$data.Email}} </li>
+            <li><b style="color:red;">Website:</b> {{$data.Web}} </li>
+            <li><b style="color:red;">Phone no.:</b>  {{$data.Phone}} </li>
         </ol>
         <div style="color:red;"> <strong><u><h2> Basic Info:</u></h2> </strong> </div>
         <ol type="circle">
-            <li><b style="color:red;">Gender:</b>Male</li>
-            <li><b style="color:red;">Date of Birth:</b>01/02/1999</li>
+            <li><b style="color:red;">Gender:</b>{{$data.Gender}}</li>
+            <li><b style="color:red;">Date of Birth:</b>{{$data.DoB}}</li>
         </ol>
             <div style="color:red;"> <strong><u><h2> Objective:</u></h2> </strong> </div>
             &nbsp
             &nbsp
-            <div>Seeking a position as an accountant where extensive experience will be further developed and utilised. Extensive experience to the credit.</div>
+            <div>{{$data.Objective}}</div>
             <br>
             <div style="color:red;"> <strong><u><h2> Work Experience:</u></h2> </strong> </div>
             <ol type="circle">
-                <li>Administrator At MyOffice Inc, Boston Oct 2005 - Present</li>
-                <li>DC Systems, DC Mar 2003 - Jun 2005</li>
-                <li>Nucleus Band Corp, Boston Jan 2002 - Jan 2003</li>
+                <li>{{$data.JobTitle1}} {{$data.ComName1}} {{$data.JobDates1}}</li>
+                <li>{{$data.JobTitle2}} {{$data.ComName2}} {{$data.JobDates2}}</li>
+                <li>{{$data.JobTitle3}} {{$data.ComName3}} {{$data.JobDates3}}</li>
+                <li>{{$data.JobTitle4}} {{$data.ComName4}} {{$data.JobDates4}}</li>
+                <li>{{$data.JobTitle5}} {{$data.ComName5}} {{$data.JobDates5}}</li>
+                <li>{{$data.JobTitle6}} {{$data.ComName6}} {{$data.JobDates6}}</li>
+                <li>{{$data.JobTitle7}} {{$data.ComName7}} {{$data.JobDates7}}</li>
+                <li>{{$data.JobTitle8}} {{$data.ComName8}} {{$data.JobDates8}}</li>
             </ol>
              <div style="color:red;"> <strong> <u><h2>Education:</u></h2> </strong> </div>
         <ol type="circle">
-            <li><b style="color:red;">X Percentage:</b>Scored 90% From DL DAV in 1996</li>
-            <li><b style="color:red;">XII Percentage:</b>Scored 89% From DL DAV in 1998</li>
-            <li><b style="color:red;">Graduation:</b>Scored 90% From University of Washington in 2001</li>
-            <li><b style="color:red;">Post Graduation:</b>scored 90% From University of Washington DAV in 2003 </li>
+            <li><b style="color:red;">X Percentage:</b>Scored {{$data.XPer}} From {{$data.Xname}} in {{$data.Xyear}}</li>
+            <li><b style="color:red;">XII Percentage:</b>Scored {{$data.XIIper}} From {{$data.XIIname}} in {{$data.XIIyear}}</li>
+            <li><b style="color:red;">Graduation:</b>Scored {{$data.Gradper}} From {{$data.Gradname}} in {{$data.Gradyear}}</li>
+            <li><b style="color:red;">Post Graduation:</b>scored {{$data.PGper}} From {{$data.PGname}} in {{$data.PGyear}} </li>
         </ol>
          <div style="color:red;"> <strong> <u><h2>Skills:</u></h2> </strong> </div>
         <ol type="circle">
-            <li> Microsoft Word</li>
-            <li> Excel</li>
-            <li> Access</li> 
-            <li>PowerPoint</li>
-            <li> Outlook Express</li> 
-            <li>Microsoft Windows</li>
+            <li> {{$data.Skill1}}</li>
+            <li> {{$data.Skill2}}</li>
+            <li> {{$data.Skill3}}</li> 
+            <li> {{$data.Skill4}}</li>
+            <li> {{$data.Skill5}}</li> 
+            <li> {{$data.Skill6}}</li>
+            <li> {{$data.Skill7}}</li>
+            <li> {{$data.Skill8}}</li>
+            <li> {{$data.Skill9}}</li>
     </body>
 </html>
