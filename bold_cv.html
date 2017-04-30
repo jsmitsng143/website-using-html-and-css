@@ -4,45 +4,58 @@
                 <link href="assets/bold_cv.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div style="font-size:3em">Thomas Edison</div>
+        {{$data := .}}
+        <div style="font-size:3em">{{$data.Name}}<br>
+            <form>
+                <input type=button name=print value="Print" onClick="window.print()">
+            </form>
+        </div>
         <hr size="2px" noshade color="black" >
         <div class="cn"> <strong> contact: </strong> </div>
         <ol type="circle">
-            <li><b>Address:</b>956, 31st Street NYC - 10001 United States</li>
-            <li><b>E-mail:</b> thomas.@thecompany.com </li>
-            <li><b>Website:</b> biuldyourcv.com </li>
-            <li><b>Phone no.:</b>  (123) 456 789 (456) 789 123 </li>
+            <li><b>Address:</b>{{$data.Addr}}</li>
+            <li><b>E-mail:</b> {{$data.Email}} </li>
+            <li><b>Website:</b> {{$data.Web}} </li>
+            <li><b>Phone no.:</b>  {{$data.Phone}} </li>
         </ol>
         <div class="bg"> <strong> Basic Info: </strong> </div>
         <ol type="circle">
-            <li><b>Gender:</b>Male</li>
-            <li><b>Date of Birth</b>01/02/1999</li>
+            <li><b>Gender:</b>{{$data.Gender}}</li>
+            <li><b>Date of Birth</b>{{$data.DoB}}</li>
         </ol>
             <div class="bg"> <strong> Objective: </strong> </div>
             &nbsp
             &nbsp
-            <div>Seeking a position as an accountant where extensive experience will be further developed and utilised. Extensive experience to the credit.</div>
+            <div>{{$data.Objective}}</div>
             <br>
             <div class="we"> <strong> Work Experience: </strong> </div>
             <ol type="circle">
-                <li>Administrator At MyOffice Inc, Boston Oct 2005 - Present</li>
-                <li>DC Systems, DC Mar 2003 - Jun 2005</li>
-                <li>Nucleus Band Corp, Boston Jan 2002 - Jan 2003</li>
+                <li>{{$data.JobTitle1}} {{$data.ComName1}} {{$data.JobDates1}}</li>
+                <li>{{$data.JobTitle2}} {{$data.ComName2}} {{$data.JobDates2}}</li>
+                <li>{{$data.JobTitle3}} {{$data.ComName3}} {{$data.JobDates3}}</li>
+                <li>{{$data.JobTitle4}} {{$data.ComName4}} {{$data.JobDates4}}</li>
+                <li>{{$data.JobTitle5}} {{$data.ComName5}} {{$data.JobDates5}}</li>
+                <li>{{$data.JobTitle6}} {{$data.ComName6}} {{$data.JobDates6}}</li>
+                <li>{{$data.JobTitle7}} {{$data.ComName7}} {{$data.JobDates7}}</li>
+                <li>{{$data.JobTitle8}} {{$data.ComName8}} {{$data.JobDates8}}</li>                
             </ol>
              <div class="bg"> <strong> Education: </strong> </div>
         <ol type="circle">
-            <li><b>X Percentage:</b>Scored 90% From DL DAV in 1996</li>
-            <li><b>XII Percentage:</b>Scored 89% From DL DAV in 1998</li>
-            <li><b>Graduation:</b>Scored 90% From University of Washington in 2001</li>
-            <li><b>Post Graduation:</b>scored 90% From University of Washington DAV in 2003 </li>
+            <li><b>X Percentage:</b>Scored {{$data.XPer}} From {{$data.Xname}} in {{$data.Xyear}}</li>
+            <li><b>XII Percentage:</b>Scored {{$data.XIIper}} From {{$data.XIIname}} in {{$data.XIIyear}}</li>
+            <li><b>Graduation:</b>Scored {{$data.Gradper}} From {{$data.Gradname}} in {{$data.Gradyear}}</li>
+            <li><b>Post Graduation:</b>scored {{$data.PGper}} From {{$data.PGname}} in {{$data.PGyear}} </li>
         </ol>
          <div class="sk"> <strong> Skills: </strong> </div>
         <ol type="circle">
-            <li> Microsoft Word</li>
-            <li> Excel</li>
-            <li> Access</li> 
-            <li>PowerPoint</li>
-            <li> Outlook Express</li> 
-            <li>Microsoft Windows</li>
+            <li> {{$data.Skill1}}</li>
+            <li> {{$data.Skill2}}</li>
+            <li> {{$data.Skill3}}</li> 
+            <li> {{$data.Skill4}}</li>
+            <li> {{$data.Skill5}}</li> 
+            <li> {{$data.Skill6}}</li>
+            <li> {{$data.Skill7}}</li>
+            <li> {{$data.Skill8}}</li>
+            <li> {{$data.Skill9}}</li>
     </body>
 </html>

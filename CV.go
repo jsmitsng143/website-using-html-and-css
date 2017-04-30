@@ -9,6 +9,7 @@ import (
 	"os"
 
 	mgo "gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 
 	"github.com/gorilla/context"
 	uuid "github.com/nu7hatch/gouuid"
@@ -107,6 +108,14 @@ func main() {
 	http.HandleFunc("/contact.html", contact)
 	http.HandleFunc("/policy.html", policy)
 	http.HandleFunc("/help.html", help)
+	http.HandleFunc("/submit.html", submit)
+
+	http.HandleFunc("/mocca_cv.html", mocca)
+	http.HandleFunc("/elegant_cv.html", elegant)
+	http.HandleFunc("/finesse_cv.html", finesse)
+	http.HandleFunc("/headline_cv.html", headline)
+	http.HandleFunc("/literateur_cv.html", lit)
+	http.HandleFunc("/bold_cv.html", bold)
 
 	fmt.Println("Listening at 8888")
 	http.ListenAndServe(":8888", context.ClearHandler(http.DefaultServeMux))
@@ -130,7 +139,7 @@ func newSub(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 		data.ImageName = uploadPage(w, r)
 		data.Name = r.FormValue("flname")
-		data.Email = r.FormValue("umail")
+		data.Email = r.FormValue("uemail")
 		data.Phone = r.FormValue("ucontact")
 		data.Web = r.FormValue("web")
 		data.DoB = r.FormValue("dob")
@@ -190,7 +199,7 @@ func newSub(w http.ResponseWriter, r *http.Request) {
 			log.Println(err)
 		}
 
-		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+		http.Redirect(w, r, "/submit.html", http.StatusTemporaryRedirect)
 	}
 
 	err := tpl.ExecuteTemplate(w, "new.html", nil)
@@ -202,7 +211,6 @@ func newSub(w http.ResponseWriter, r *http.Request) {
 
 	log.Println(r.URL.Path)
 }
-
 func uploadPage(w http.ResponseWriter, r *http.Request) string {
 
 	if r.Method == http.MethodPost {
@@ -243,20 +251,7 @@ func uploadPage(w http.ResponseWriter, r *http.Request) string {
 	return ""
 }
 
-func dataInDb(data cvData) error {
-	session, err := mgo.Dial("mongodb://localhost/")
-
-	if err != nil {
-		log.Println(err)
-	}
-	defer session.Close()
-	session.SetMode(mgo.Monotonic, true)
-
-	c := session.DB("CVDB").C("CVCol")
-	err = c.Insert(data)
-
-	return err
-}
+//-----------------------------------------------------------------------------------//
 func help(w http.ResponseWriter, r *http.Request) {
 	err := tpl.ExecuteTemplate(w, "help.html", nil)
 
@@ -289,4 +284,197 @@ func contact(w http.ResponseWriter, r *http.Request) {
 	}
 
 	log.Println(r.URL.Path)
+}
+func submit(w http.ResponseWriter, r *http.Request) {
+	err := tpl.ExecuteTemplate(w, "submit.html", nil)
+
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	log.Println(r.URL.Path)
+}
+
+//-----------------------------------------------------------------------------------//
+// Template Pages
+func mocca(w http.ResponseWriter, r *http.Request) {
+
+	session, err := mgo.Dial("mongodb://localhost/")
+
+	if err != nil {
+		log.Println(err)
+	}
+	defer session.Close()
+	session.SetMode(mgo.Monotonic, true)
+
+	c := session.DB("CVDB").C("CVCol")
+	result := cvData{}
+
+	//yourName := r.FormValue("value")
+
+	err = c.Find(bson.M{"name": "test"}).One(&result)
+
+	err = tpl.ExecuteTemplate(w, "mocca_cv.html", result)
+
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	log.Println(r.URL.Path)
+}
+func elegant(w http.ResponseWriter, r *http.Request) {
+
+	session, err := mgo.Dial("mongodb://localhost/")
+
+	if err != nil {
+		log.Println(err)
+	}
+	defer session.Close()
+	session.SetMode(mgo.Monotonic, true)
+
+	c := session.DB("CVDB").C("CVCol")
+	result := cvData{}
+
+	//yourName := r.FormValue("value")
+
+	err = c.Find(bson.M{"name": "test"}).One(&result)
+
+	err = tpl.ExecuteTemplate(w, "elegant_cv.html", result)
+
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	log.Println(r.URL.Path)
+}
+func finesse(w http.ResponseWriter, r *http.Request) {
+
+	session, err := mgo.Dial("mongodb://localhost/")
+
+	if err != nil {
+		log.Println(err)
+	}
+	defer session.Close()
+	session.SetMode(mgo.Monotonic, true)
+
+	c := session.DB("CVDB").C("CVCol")
+	result := cvData{}
+
+	//yourName := r.FormValue("value")
+
+	err = c.Find(bson.M{"name": "test"}).One(&result)
+
+	err = tpl.ExecuteTemplate(w, "finesse_cv.html", result)
+
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	log.Println(r.URL.Path)
+}
+func headline(w http.ResponseWriter, r *http.Request) {
+
+	session, err := mgo.Dial("mongodb://localhost/")
+
+	if err != nil {
+		log.Println(err)
+	}
+	defer session.Close()
+	session.SetMode(mgo.Monotonic, true)
+
+	c := session.DB("CVDB").C("CVCol")
+	result := cvData{}
+
+	//yourName := r.FormValue("value")
+
+	err = c.Find(bson.M{"name": "test"}).One(&result)
+
+	err = tpl.ExecuteTemplate(w, "headline_cv.html", result)
+
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	log.Println(r.URL.Path)
+}
+func lit(w http.ResponseWriter, r *http.Request) {
+
+	session, err := mgo.Dial("mongodb://localhost/")
+
+	if err != nil {
+		log.Println(err)
+	}
+	defer session.Close()
+	session.SetMode(mgo.Monotonic, true)
+
+	c := session.DB("CVDB").C("CVCol")
+	result := cvData{}
+
+	//yourName := r.FormValue("value")
+
+	err = c.Find(bson.M{"name": "test"}).One(&result)
+
+	err = tpl.ExecuteTemplate(w, "literateur_cv.html", result)
+
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	log.Println(r.URL.Path)
+}
+func bold(w http.ResponseWriter, r *http.Request) {
+
+	session, err := mgo.Dial("mongodb://localhost/")
+
+	if err != nil {
+		log.Println(err)
+	}
+	defer session.Close()
+	session.SetMode(mgo.Monotonic, true)
+
+	c := session.DB("CVDB").C("CVCol")
+	result := cvData{}
+
+	//yourName := r.FormValue("value")
+
+	err = c.Find(bson.M{"name": "test"}).One(&result)
+
+	err = tpl.ExecuteTemplate(w, "bold_cv.html", result)
+
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	log.Println(r.URL.Path)
+}
+
+//-----------------------------------------------------------------------------------//
+// Push Data
+func dataInDb(data cvData) error {
+	session, err := mgo.Dial("mongodb://localhost/")
+
+	if err != nil {
+		log.Println(err)
+	}
+	defer session.Close()
+	session.SetMode(mgo.Monotonic, true)
+
+	c := session.DB("CVDB").C("CVCol")
+	err = c.Insert(data)
+
+	return err
 }
