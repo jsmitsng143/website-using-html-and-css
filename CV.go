@@ -9,7 +9,6 @@ import (
 	"os"
 
 	mgo "gopkg.in/mgo.v2"
-	"gopkg.in/mgo.v2/bson"
 
 	"github.com/gorilla/context"
 	uuid "github.com/nu7hatch/gouuid"
@@ -312,9 +311,8 @@ func mocca(w http.ResponseWriter, r *http.Request) {
 	c := session.DB("CVDB").C("CVCol")
 	result := cvData{}
 
-	//yourName := r.FormValue("value")
-
-	err = c.Find(bson.M{"name": "test"}).One(&result)
+	number, err := c.Count()
+	err = c.Find(nil).Skip(number - 1).One(&result)
 
 	err = tpl.ExecuteTemplate(w, "mocca_cv.html", result)
 
@@ -339,9 +337,8 @@ func elegant(w http.ResponseWriter, r *http.Request) {
 	c := session.DB("CVDB").C("CVCol")
 	result := cvData{}
 
-	//yourName := r.FormValue("value")
-
-	err = c.Find(bson.M{"name": "test"}).One(&result)
+	number, err := c.Count()
+	err = c.Find(nil).Skip(number - 1).One(&result)
 
 	err = tpl.ExecuteTemplate(w, "elegant_cv.html", result)
 
@@ -366,9 +363,8 @@ func finesse(w http.ResponseWriter, r *http.Request) {
 	c := session.DB("CVDB").C("CVCol")
 	result := cvData{}
 
-	//yourName := r.FormValue("value")
-
-	err = c.Find(bson.M{"name": "test"}).One(&result)
+	number, err := c.Count()
+	err = c.Find(nil).Skip(number - 1).One(&result)
 
 	err = tpl.ExecuteTemplate(w, "finesse_cv.html", result)
 
@@ -393,9 +389,8 @@ func headline(w http.ResponseWriter, r *http.Request) {
 	c := session.DB("CVDB").C("CVCol")
 	result := cvData{}
 
-	//yourName := r.FormValue("value")
-
-	err = c.Find(bson.M{"name": "test"}).One(&result)
+	number, err := c.Count()
+	err = c.Find(nil).Skip(number - 1).One(&result)
 
 	err = tpl.ExecuteTemplate(w, "headline_cv.html", result)
 
@@ -420,9 +415,8 @@ func lit(w http.ResponseWriter, r *http.Request) {
 	c := session.DB("CVDB").C("CVCol")
 	result := cvData{}
 
-	//yourName := r.FormValue("value")
-
-	err = c.Find(bson.M{"name": "test"}).One(&result)
+	number, err := c.Count()
+	err = c.Find(nil).Skip(number - 1).One(&result)
 
 	err = tpl.ExecuteTemplate(w, "literateur_cv.html", result)
 
@@ -447,9 +441,8 @@ func bold(w http.ResponseWriter, r *http.Request) {
 	c := session.DB("CVDB").C("CVCol")
 	result := cvData{}
 
-	//yourName := r.FormValue("value")
-
-	err = c.Find(bson.M{"name": "test"}).One(&result)
+	number, err := c.Count()
+	err = c.Find(nil).Skip(number - 1).One(&result)
 
 	err = tpl.ExecuteTemplate(w, "bold_cv.html", result)
 
